@@ -1,15 +1,20 @@
 package myFirstApp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Task's description must be not empty")//validacja, zabezpieczenie, zeby opisn nie byl nullem, ani np. samymi spacjami/
     private String description;
     private boolean done;
+
+    public Task() {
+    }
 
     public int getId() {
         return id;
